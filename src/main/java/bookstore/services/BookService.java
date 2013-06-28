@@ -1,6 +1,6 @@
-package mybookstore.services;
+package bookstore.services;
 
-import mybookstore.model.Book;
+import bookstore.model.Book;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

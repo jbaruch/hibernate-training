@@ -1,4 +1,4 @@
-package mybookstore.model;
+package bookstore.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package mybookstore.services;
+package bookstore.services;
 
-import mybookstore.dao.PersonDao;
-import mybookstore.model.Person;
+import bookstore.dao.PersonDao;
+import bookstore.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

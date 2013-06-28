@@ -1,6 +1,6 @@
-package mybookstore.services;
+package bookstore.services;
 
-import mybookstore.model.Person;
+import bookstore.model.Person;
 import org.springframework.stereotype.Service;
 
 /**

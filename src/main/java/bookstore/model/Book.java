@@ -1,4 +1,4 @@
-package mybookstore.model;
+package bookstore.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 
 @Entity(name = "Books")
-//@NamedQuery(name = "findBookMoreExpensiveThan", query = "select b from mybookstore.model.Book as b where b.price > :price")
+//@NamedQuery(name = "findBookMoreExpensiveThan", query = "select b from bookstore.model.Book as b where b.price > :price")
 
 public class Book implements Serializable {
     private int id;

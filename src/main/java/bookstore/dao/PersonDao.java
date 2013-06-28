@@ -1,6 +1,6 @@
-package mybookstore.dao;
+package bookstore.dao;
 
-import mybookstore.model.Person;
+import bookstore.model.Person;
 import org.springframework.stereotype.Repository;
 
 /**
