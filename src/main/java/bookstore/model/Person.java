@@ -1,8 +1,7 @@
-package bookstore.model;
+package mybookstore.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,11 +11,23 @@ import java.util.List;
  * Time: 1:06 AM
  * To change this template use File | Settings | File Templates.
  */
-//@Entity(name = "Persons")
+@Entity(name = "Persons")
 public class Person {
     private long id;
     private String name;
-    private List<Book> books;
+
+    private List<Book> books = new ArrayList<Book>();
+
+    public Person() {
+    }
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public void addBook(Book book) {
+        books.add(book);
+    }
 
     public String getName() {
         return name;
@@ -26,6 +37,9 @@ public class Person {
         this.name = name;
     }
 
+
+    @OneToMany(mappedBy = "owner")
+    @OrderColumn
     public List<Book> getBooks() {
         return books;
     }
@@ -35,7 +49,7 @@ public class Person {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public long getId() {
 
         return id;

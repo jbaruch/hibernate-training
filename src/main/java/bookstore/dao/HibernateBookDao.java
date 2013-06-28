@@ -1,6 +1,6 @@
-package bookstore.dao;
+package mybookstore.dao;
 
-import bookstore.model.Book;
+import mybookstore.model.Book;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +22,7 @@ public class HibernateBookDao implements BookDao {
     private EntityManager entityManager;
 
     public List<Book> getAllBooksAbovePrice(int price) {
-        Query query = entityManager.createQuery("select b from bookstore.model.Book as b where b.price > :price");
+        Query query = entityManager.createQuery("select b from mybookstore.model.Book as b where b.price > :price");
 //        Query query = entityManager.createNamedQuery("findBookMoreExpensiveThan");
         List<Book> resultList = query.setParameter("price", price).getResultList();
         return resultList;

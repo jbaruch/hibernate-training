@@ -1,4 +1,4 @@
-package bookstore.model;
+package mybookstore.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,17 +12,27 @@ import java.io.Serializable;
  */
 
 @Entity(name = "Books")
-//@NamedQuery(name = "findBookMoreExpensiveThan", query = "select b from bookstore.model.Book as b where b.price > :price")
+//@NamedQuery(name = "findBookMoreExpensiveThan", query = "select b from mybookstore.model.Book as b where b.price > :price")
 
 public class Book implements Serializable {
     private int id;
     private String name;
     private int price;
+    private Person owner;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public int getId() {
         return id;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
     public void setId(int id) {
