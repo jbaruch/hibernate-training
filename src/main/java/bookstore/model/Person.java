@@ -27,6 +27,7 @@ public class Person {
 
     public void addBook(Book book) {
         books.add(book);
+        book.setOwner(this);
     }
 
     public String getName() {
@@ -38,7 +39,7 @@ public class Person {
     }
 
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     @OrderColumn
     public List<Book> getBooks() {
         return books;

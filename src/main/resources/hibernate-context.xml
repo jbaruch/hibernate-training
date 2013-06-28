@@ -8,21 +8,24 @@
          http://www.springframework.org/schema/aop
          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
-    <bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean name="bookstore" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-        <property name="url" value="jdbc:derby:bookstore"/>
-
+        <property name="url" value="jdbc:derby:bookstore;create=true"/>
     </bean>
 
-    <bean id="my-persistence-unit" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
+    <bean id="bookstore-persistence-unit" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="bookstore"/>
         <property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence"/>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.DerbyTenSevenDialect</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+
             </props>
         </property>
         <property name="packagesToScan">
@@ -33,7 +36,7 @@
     </bean>
 
     <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-        <property name="entityManagerFactory" ref="my-persistence-unit"/>
+        <property name="entityManagerFactory" ref="bookstore-persistence-unit"/>
     </bean>
     <context:component-scan base-package="bookstore"/>
     <tx:annotation-driven transaction-manager="txManager"/>
